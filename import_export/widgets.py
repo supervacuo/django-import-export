@@ -45,7 +45,10 @@ class DecimalWidget(Widget):
     def clean(self, value):
         if not value:
             return None
-        return Decimal(value)
+        try:
+            return Decimal(value)
+        except TypeError:
+            return Decimal(str(value))
 
 
 class CharWidget(Widget):
